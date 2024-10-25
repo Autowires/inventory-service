@@ -2,9 +2,9 @@ package com.microservices.inventory.entity;
 
 import java.sql.Timestamp;
 
+import org.hibernate.annotations.UpdateTimestamp;
 
-
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,30 +13,26 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table (name="inventory")
-
 public class Inventory {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long inventoryId;
-	
-	private long product_id ;
+	@Column(unique = true)
+	private long productId ;
 	private int quantity;
+	@UpdateTimestamp
 	private Timestamp  updatedAt ;
-	
-	
-	
 	public long getInventoryId() {
 		return inventoryId;
 	}
 	public void setInventoryId(long inventoryId) {
 		this.inventoryId = inventoryId;
 	}
-	public long getProduct_id() {
-		return product_id;
+	public long getProductId() {
+		return productId;
 	}
-	public void setProduct_id(long product_id) {
-		this.product_id = product_id;
+	public void setProductId(long product_id) {
+		this.productId = product_id;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -50,6 +46,4 @@ public class Inventory {
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-
 }
